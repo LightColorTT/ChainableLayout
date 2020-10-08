@@ -20,3 +20,14 @@ pinnableView
 4) .rightAnchor pinnableView к .leftAnchor someView3 с приоритетом .defaultHigh
 5) Активация всех ограничений обьявленных в цепочке
 ```
+### Так же есть возможность получать уже установленные ограничения и редактировать их:
+```
+pinnableView.leftConstraint?.constant = 10.0
+pinnableView.topConstraint?.constant = 25.0
+```
+
+## Carthage
+Для интеграции ChainableLayout, необходимо прописать в Cartfile:
+```
+github "LightColorTT/ChainableLayout" ~> 1.0.0
+```
