@@ -1,10 +1,3 @@
-//
-//  UIView+LastBaseline.swift
-//  ChainableLayout
-//
-//  Created by Filipp Krasnovid on 08.10.2020.
-//  Copyright © 2020 LightColor. All rights reserved.
-//
 
 /// Добавление ограничений .lastBaseline
 public extension UIView {
@@ -16,41 +9,19 @@ public extension UIView {
 	/// - Returns: Self
 	@discardableResult
 	func lastBaseline(like view: UIView, offset: CGFloat = 0.0, priority: UILayoutPriority = .required) -> Self {
-		constraintsBag.append(
-			lastBaselineAnchor.constraint(equalTo: view.lastBaselineAnchor, constant: offset, priority: priority)
-		)
+		bag.append(lastBaselineAnchor.constraint(equalTo: view.lastBaselineAnchor, c: offset, p: priority))
         return self
 	}
 
-	/// Установить ограничение .lastBaseline "меньше или равно" как у другой вью c отступом
+	/// Установить ограничение .firstBaseline как у другой вью
 	/// - Parameters:
-	///   - view: вью для ограничения
+	///   - view: FlexibleView для ограничения
 	///   - offset: отступ, по умолчанию 0
 	///   - priority: приоритет ограничения, по умолчанию .required
 	/// - Returns: Self
 	@discardableResult
-	func lastBaselineLessThanOrEqual(like view: UIView, offset: CGFloat = 0.0, priority: UILayoutPriority = .required) -> Self {
-		constraintsBag.append(
-			lastBaselineAnchor.constraint(
-				lessThanOrEqualTo: view.lastBaselineAnchor, constant: offset, priority: priority
-			)
-		)
-        return self
-	}
-
-	/// Установить ограничение .lastBaseline "больше или равно" как у другой вью c отступом
-	/// - Parameters:
-	///   - view: вью для ограничения
-	///   - offset: отступ, по умолчанию 0
-	///   - priority: приоритет ограничения, по умолчанию .required
-	/// - Returns: Self
-	@discardableResult
-	func lastBaselineGreaterThanOrEqual(like view: UIView, offset: CGFloat = 0.0, priority: UILayoutPriority = .required) -> Self {
-		constraintsBag.append(
-			lastBaselineAnchor.constraint(
-				greaterThanOrEqualTo: view.lastBaselineAnchor, constant: offset, priority: priority
-			)
-		)
+	func lastBaseline(like view: FlexibleView, offset: CGFloat = 0.0, priority: UILayoutPriority = .required) -> Self {
+		bag.append(lastBaselineAnchor.constraint(relation: view.relation, anchor: view.view.lastBaselineAnchor, c: offset, p: priority))
         return self
 	}
 }

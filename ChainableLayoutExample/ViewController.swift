@@ -31,49 +31,44 @@ class ViewController: UIViewController {
 		view.addSubviews(view1, view2, view3, view4, view5, view6)
 
 		view1
+			.size(100)
 			.centerContainer()
-			.size(55.0)
 			.activate()
 
 		view2
-			.left(like: view1)
-			.size(150.0)
-			.topSafe(25.0)
+			.size(like: view1)
+			.left(to: view1, offset: 50)
+			.top(like: view1)
+			.right(<=25)
 			.activate()
 
 		view3
-			.left(like: view1)
-			.right(like: view2)
-			.height(75.0)
-			.bottomSafe(15.0)
+			.topSafe(priority: .defaultLow)
+			.height(200)
+			.left(10)
+			.bottom(to: view1, offset: >=150, priority: .sceneSizeStayPut)
+			.width(100)
 			.activate()
 
 		view4
-			.left(to: view1, offset: 15.0)
-			.height(55.0)
-			.right(5.0)
-			.centerY(like: view1)
+			.top(to: view1, offset: 50)
+			.size(100)
+			.centerX(like: view1, priority: .fittingSizeLevel)
 			.activate()
 
 		view5
-			.right(to: view1, offset: 15.0)
-			.height(55.0)
-			.left(5.0)
-			.centerY(like: view1)
+			.left(10)
+			.bottomSafe()
+			.width(<=250)
+			.height(100)
 			.activate()
 
-		view6.pinContainerSafe()
-		view.sendSubviewToBack(view6)
-
-
-
-		DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-			self.view3.heightConstraint?.constant = 300.0
-			self.view4.heightConstraint?.constant = 300.0
-			self.view5.heightConstraint?.constant = 300.0
-			UIView.animate(withDuration: 2.0) {
-				self.view.layoutIfNeeded()
-			}
-		}
+		view6
+			.right(10)
+			.top(to: view4, offset: 50)
+			.left(to: view5, offset: 10)
+			.width(<=250)
+			.bottom(like: >=view5)
+			.activate()
 	}
 }
