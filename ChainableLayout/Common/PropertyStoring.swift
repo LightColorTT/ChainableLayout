@@ -1,10 +1,3 @@
-//
-//  PropertyStoring.swift
-//  ChainableLayout
-//
-//  Created by Filipp Krasnovid on 08.10.2020.
-//  Copyright © 2020 LightColor. All rights reserved.
-//
 
 /// Интерфейс для использования AssociatedObject
 protocol PropertyStoring {

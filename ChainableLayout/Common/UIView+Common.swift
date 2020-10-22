@@ -1,10 +1,3 @@
-//
-//  UIView+Common.swift
-//  ChainableLayout
-//
-//  Created by Filipp Krasnovid on 08.10.2020.
-//  Copyright © 2020 LightColor. All rights reserved.
-//
 
 public extension UIView {
 	/// Добавление subviews
@@ -19,9 +12,20 @@ public extension UIView {
 		return self
 	}
 
+	/// Добавление себя как subview к superview
+	/// - Parameter superview: superview для добавления
+	/// - Returns: Self
+	@discardableResult
+	func add(to superview: UIView) -> Self {
+		superview.addSubview(self)
+		translatesAutoresizingMaskIntoConstraints = false
+		return self
+	}
+
 	/// Отложенная активация всех ограничений
 	func activate() {
-		NSLayoutConstraint.activate(constraintsBag)
+		NSLayoutConstraint.activate(bag)
+		bag.removeAll()
 	}
 }
 
@@ -36,9 +40,7 @@ extension UIView {
 	/// Поиск ограничения по аттрибуту
 	func constraintFor(attribute: NSLayoutConstraint.Attribute) -> NSLayoutConstraint? {
 		func lookForConstraint(in view: UIView?) -> NSLayoutConstraint? {
-			guard let constraints = view?.constraints else {
-				return nil
-			}
+			guard let constraints = view?.constraints else { return nil }
 			for c in constraints {
 				if let fi = c.firstItem as? NSObject, fi == self && c.firstAttribute == attribute {
 					return c
@@ -63,9 +65,8 @@ extension UIView: PropertyStoring {
 		static var constraints = "constraints"
 	}
 	typealias T = [NSLayoutConstraint]
-	var constraintsBag: T {
+	var bag: T {
 		get { return getAssociatedObject(&Key.constraints, defaultValue: []) }
 		set { return objc_setAssociatedObject(self, &Key.constraints, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
 	}
 }
-

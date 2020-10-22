@@ -31,6 +31,7 @@
 		780692AA252F691F0025AF71 /* UIView+LastBaseline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780692A9252F691F0025AF71 /* UIView+LastBaseline.swift */; };
 		780692AC252F69370025AF71 /* UIView+CenterY.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780692AB252F69370025AF71 /* UIView+CenterY.swift */; };
 		780692AE252F6FED0025AF71 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780692AD252F6FED0025AF71 /* UIView+Constraints.swift */; };
+		7875286E253A260800041137 /* FlexibleOffset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7875286D253A260800041137 /* FlexibleOffset.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		780692A9252F691F0025AF71 /* UIView+LastBaseline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+LastBaseline.swift"; sourceTree = "<group>"; };
 		780692AB252F69370025AF71 /* UIView+CenterY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CenterY.swift"; sourceTree = "<group>"; };
 		780692AD252F6FED0025AF71 /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
+		7875286D253A260800041137 /* FlexibleOffset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleOffset.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 				7806928F252F552E0025AF71 /* PropertyStoring.swift */,
 				78069293252F55A50025AF71 /* NSLayoutDimension+Priority.swift */,
 				78069295252F56040025AF71 /* NSLayoutAnchor+Priority.swift */,
+				7875286D253A260800041137 /* FlexibleOffset.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				780692A8252F69110025AF71 /* UIView+FirstBaseline.swift in Sources */,
 				7806928E252F54CB0025AF71 /* UIView+Common.swift in Sources */,
 				78069294252F55A50025AF71 /* NSLayoutDimension+Priority.swift in Sources */,
+				7875286E253A260800041137 /* FlexibleOffset.swift in Sources */,
 				78069296252F56040025AF71 /* NSLayoutAnchor+Priority.swift in Sources */,
 				780692AC252F69370025AF71 /* UIView+CenterY.swift in Sources */,
 				78069290252F552E0025AF71 /* PropertyStoring.swift in Sources */,
@@ -482,6 +486,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = TT.ChainableLayout;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -509,6 +514,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = TT.ChainableLayout;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

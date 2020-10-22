@@ -1,10 +1,3 @@
-//
-//  UIView+Right.swift
-//  ChainableLayout
-//
-//  Created by Filipp Krasnovid on 08.10.2020.
-//  Copyright © 2020 LightColor. All rights reserved.
-//
 
 /// Добавление ограничений .right
 public extension UIView {
@@ -18,45 +11,7 @@ public extension UIView {
 	/// - Returns: Self
 	@discardableResult
 	func right(_ offset: CGFloat = 0.0, priority: UILayoutPriority = .required) -> Self {
-		constraintsBag.append(
-			currentSuperview.rightAnchor.constraint(equalTo: rightAnchor, constant: offset, priority: priority)
-		)
-		return self
-	}
-
-	/// Установить ограничение .right "меньше либо равно" к супервью с отступом
-	///
-	/// - Note: Требует активации .active()
-	///
-	/// - Parameters:
-	///   - offset: отступ, по умолчанию 0
-	///   - priority: приоритет ограничения, по умолчанию .required
-	/// - Returns: Self
-	@discardableResult
-	func rightLessThanOrEqual(_ offset: CGFloat, priority: UILayoutPriority = .required) -> Self {
-		constraintsBag.append(
-			currentSuperview.rightAnchor.constraint(
-				lessThanOrEqualTo: rightAnchor, constant: offset, priority: priority
-			)
-		)
-		return self
-	}
-
-	/// Установить ограничение .right "больше либо равно" к супервью с отступом
-	///
-	/// - Note: Требует активации .active()
-	///
-	/// - Parameters:
-	///   - offset: отступ, по умолчанию 0
-	///   - priority: приоритет ограничения, по умолчанию .required
-	/// - Returns: Self
-	@discardableResult
-	func rightGreaterThanOrEqual(_ offset: CGFloat, priority: UILayoutPriority = .required) -> Self {
-		constraintsBag.append(
-			currentSuperview.rightAnchor.constraint(
-				greaterThanOrEqualTo: rightAnchor, constant: offset, priority: priority
-			)
-		)
+		bag.append(currentSuperview.rightAnchor.constraint(equalTo: rightAnchor, c: offset, p: priority))
 		return self
 	}
 
@@ -71,43 +26,7 @@ public extension UIView {
 	/// - Returns: Self
     @discardableResult
 	func right(to view: UIView, offset: CGFloat = 0.0, priority: UILayoutPriority = .required) -> Self {
-		constraintsBag.append(view.leftAnchor.constraint(
-			equalTo: rightAnchor, constant: offset, priority: priority)
-		)
-        return self
-    }
-
-	/// Установить ограничение .right "меньше либо равно" к .left другой вью с отступом
-	///
-	/// - Note: Требует активации .active()
-	///
-	/// - Parameters:
-	///   - view: вью для ограничения
-	///   - offset: отступ, по умолчанию 0
-	///   - priority: приоритет ограничения, по умолчанию .required
-	/// - Returns: Self
-    @discardableResult
-	func rightLessThanOrEqual(to view: UIView, offset: CGFloat = 0.0, priority: UILayoutPriority = .required) -> Self {
-		constraintsBag.append(
-			rightAnchor.constraint(lessThanOrEqualTo: view.leftAnchor, constant: offset, priority: priority)
-		)
-        return self
-    }
-
-	/// Установить ограничение .right "больше либо равно" к .left другой вью с отступом
-	///
-	/// - Note: Требует активации .active()
-	///
-	/// - Parameters:
-	///   - view: вью для ограничения
-	///   - offset: отступ, по умолчанию 0
-	///   - priority: приоритет ограничения, по умолчанию .required
-	/// - Returns: Self
-    @discardableResult
-	func rightGreaterThanOrEqual(to view: UIView, offset: CGFloat = 0.0, priority: UILayoutPriority = .required) -> Self {
-		constraintsBag.append(
-			rightAnchor.constraint(greaterThanOrEqualTo: view.leftAnchor, constant: offset, priority: priority)
-		)
+		bag.append(view.leftAnchor.constraint(equalTo: rightAnchor, c: offset, p: priority))
         return self
     }
 
@@ -121,41 +40,51 @@ public extension UIView {
 	/// - Returns: Self
 	@discardableResult
 	func right(like view: UIView, offset: CGFloat = 0.0, priority: UILayoutPriority = .required) -> Self {
-		constraintsBag.append(
-			rightAnchor.constraint(equalTo: view.rightAnchor, constant: offset, priority: priority)
-		)
+		bag.append(rightAnchor.constraint(equalTo: view.rightAnchor, c: offset, p: priority))
         return self
     }
 
-	/// Установить ограничение .right "меньше либо равно" как у .right другой вью с отступом
+	/// Установить ограничение .right к супервью с отступом
+	///
+	/// - Note: Требует активации .active()
+	///
+	/// - Parameters:
+	///   - offset: FlexibleOffset структура оффсета
+	///   - priority: приоритет ограничения, по умолчанию .required
+	/// - Returns: Self
+	@discardableResult
+	func right(_ offset: FlexibleOffset, priority: UILayoutPriority = .required) -> Self {
+		bag.append(currentSuperview.rightAnchor.constraint(fo: offset.toObjc, anchor: rightAnchor, p: priority))
+		return self
+	}
+
+	/// Установить ограничение .right к .left другой вью с отступом
 	///
 	/// - Note: Требует активации .active()
 	///
 	/// - Parameters:
 	///   - view: вью для ограничения
+	///   - offset: FlexibleOffset структура оффсета
 	///   - priority: приоритет ограничения, по умолчанию .required
 	/// - Returns: Self
-	@discardableResult
-	func rightLessThanOrEqual(like view: UIView, offset: CGFloat = 0.0, priority: UILayoutPriority = .required) -> Self {
-		constraintsBag.append(
-			rightAnchor.constraint(lessThanOrEqualTo: view.rightAnchor, constant: offset, priority: priority)
-		)
+    @discardableResult
+	func right(to view: UIView, offset: FlexibleOffset, priority: UILayoutPriority = .required) -> Self {
+		bag.append(view.leftAnchor.constraint(fo: offset.toObjc, anchor: rightAnchor, p: priority))
         return self
     }
 
-	/// Установить ограничение .right "больше либо равно" как у .right другой вью с отступом
+	/// Установить ограничение .right как у .right другой вью с отступом
 	///
 	/// - Note: Требует активации .active()
 	///
 	/// - Parameters:
-	///   - view: вью для ограничения
+	///   - view: FlexibleView для ограничения
+	///   - offset: отступ, по умолчанию 0
 	///   - priority: приоритет ограничения, по умолчанию .required
 	/// - Returns: Self
 	@discardableResult
-	func rightGreaterThanOrEqual(like view: UIView, offset: CGFloat = 0.0, priority: UILayoutPriority = .required) -> Self {
-		constraintsBag.append(
-			rightAnchor.constraint(greaterThanOrEqualTo: view.rightAnchor, constant: offset, priority: priority)
-		)
-        return self
-    }
+	func right(like view: FlexibleView, offset: CGFloat = 0.0, priority: UILayoutPriority = .required) -> Self {
+		bag.append(rightAnchor.constraint(relation: view.relation, anchor: view.view.rightAnchor, c: offset, p: priority))
+		return self
+	}
 }
